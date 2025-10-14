@@ -1,0 +1,1 @@
+from ..interface.test.test_classApp import *

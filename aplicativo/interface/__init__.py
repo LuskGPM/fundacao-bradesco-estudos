@@ -1,0 +1,1 @@
+from .classApp import MainApp
