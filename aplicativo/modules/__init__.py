@@ -1,1 +1,1 @@
-from ..interface.test.test_classApp import *
+from .calculadora import MainApp
