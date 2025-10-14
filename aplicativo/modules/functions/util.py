@@ -11,7 +11,7 @@ def validarEntradas(nome:str = '', sobrenome:str = '', email:str = '', senha:str
         print('Email inválido')
         return False
     
-    if len(senha) == 0 or senha.strip == '':
+    elif len(senha) == 0 or senha.strip == '':
         return False
     
     else:

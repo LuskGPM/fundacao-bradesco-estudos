@@ -20,8 +20,12 @@ class JanelaCriarConta(Screen, Queries):
         self.email.text=''
         self.senha.text=''
         
-    def _salvar(self):
-        if validarEntradas(self.nome, self.sobrenome, self.email): 
+    def login(self):
+        self.reset()
+        jc.current = 'login'
+        
+    def submit(self):
+        if validarEntradas(self.nome.text, self.sobrenome.text, self.email.text, self.senha.text): 
             self._insert(
                 nome=self.nome.text,
                 sobrenome=self.sobrenome.text,
@@ -30,7 +34,10 @@ class JanelaCriarConta(Screen, Queries):
             )
             self.__reset()
             
+            
+            
         else:
+            print('erro aqui')
             invalidForm()
             
 class JanelaControle(ScreenManager):
@@ -40,11 +47,12 @@ class JanelaLogin(Screen, Queries):
     email = ObjectProperty(None)
     senha = ObjectProperty(None)
     
-    def _loginBtn(self):
-        if validarEntradas(email=self.email, senha=self.senha):
+    def loginBtn(self):
+        if validarEntradas(email=self.email.text, senha=self.senha.text):
             JanelaPrincipal.atual = self.email.text
             self.reset()
             jc.current = 'main'
+            
         else:
             invalidLogin()
     
@@ -59,19 +67,23 @@ class JanelaLogin(Screen, Queries):
 class JanelaPrincipal(Screen, Queries):
     
     n = ObjectProperty(None)
-    created = ObjectProperty(None)
     email = ObjectProperty(None)
     atual = ''
+    
+    def on_pre_enter(self, *args):
+        return self.entrar()
     
     def logOut(self):
         jc.current = 'login'
     
     def entrar(self):
-        senha, nome, created = self._search(email=self.atual)
+        dados = self._search(email=self.atual)
+        nome = dados[1]
+        sobrenome = dados[2]
+        email = self.atual
         
-        self.n.text=f'Nome da Conta: {nome}'
+        self.n.text=f'Nome da Conta: {nome} {sobrenome}'
         self.email.text=f'Email: {self.atual}'
-        self.created.text=f'Criado em: {created}'
         
 class BuildApp(App):
     global jc, kv, screens

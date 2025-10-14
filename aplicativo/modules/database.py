@@ -69,8 +69,13 @@ class Queries(Banco):
         self._conectar()
         self._execute('select * from clientes where nome like ? or sobrenome like ? or email = ?', (nome.strip(), sobrenome.strip(), email.strip()))
         linhas = self._fetchAll()
+        linha = list()
+        for dado in linhas:
+            for d in dado:
+                linha.append(d)
+                print(d)
         self._disconectar()
-        return linhas
+        return linha
         
     def _delete(self, id:int):
         self._conectar()
