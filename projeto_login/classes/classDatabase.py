@@ -87,3 +87,4 @@ class Queries(Banco):
     @staticmethod
     def _getDate():
         return str(datetime.datetime.now()).split(' ')[0]
+    
