@@ -52,15 +52,11 @@ class Queries(Banco):
         self._comitar()
         self._disconectar()
         
-    def __insert(self, nome:str, sobrenome:str, email:str, senha:str):
-        if validarEntradas(nome, sobrenome, email, senha):    
-            self._conectar()
-            self._execute('insert into clientes (nome, sobrenome, email, senha) values (?, ?, ?, ?)', (nome.strip(), sobrenome.strip(), email.strip(), senha))
-            self._comitar()
-            self._disconectar()
-        else:
-            print('Erro')
-            return 'Dados inválidos'
+    def _insert(self, nome:str, sobrenome:str, email:str, senha:str):
+        self._conectar()
+        self._execute('insert into clientes (nome, sobrenome, email, senha) values (?, ?, ?, ?)', (nome.strip(), sobrenome.strip(), email.strip(), senha))
+        self._comitar()
+        self._disconectar()
         
     def _view(self):
         self._conectar()

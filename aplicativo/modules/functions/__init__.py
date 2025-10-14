@@ -1,1 +1,1 @@
-from .util import validarEntradas
+from .util import *
