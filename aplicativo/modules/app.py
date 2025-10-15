@@ -32,7 +32,7 @@ class JanelaCriarConta(Screen, Queries):
                 email = self.email.text,
                 senha = self.senha.text
             )
-            self.__reset()
+            self.reset()
             
             
             

@@ -65,7 +65,7 @@ class Queries(Banco):
         
     def _busca(self, email:str = '', nome:str = '', sobrenome:str = ''):
         self._conectar()
-        self._execute('select * from usuario where nome like ? or sobrenome like ? or email = ?', (
+        self._execute('select nome, sobrenome, create from usuario where nome like ? or sobrenome like ? or email = ?', (
             nome.strip().lower(),
             sobrenome.strip().lower(),
             email.strip().lower(),
