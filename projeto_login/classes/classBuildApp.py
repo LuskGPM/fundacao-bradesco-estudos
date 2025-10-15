@@ -7,10 +7,9 @@ from .classJanelaCadastro import JanelaCadastro
 ## Variáveis Globais
 
 class BuildApp(App):
-    def __init__(self):
-        self.exe = JanelaControle()
-        self.kv = Builder.load_file('construct.kv')
-        self.screens = [JanelaLogin(name='login'), JanelaCadastro(name = 'cadastro'), JanelaPrincipal(name = 'principal')]
+    exe = JanelaControle()
+    kv = Builder.load_file('construct.kv')
+    screens = [JanelaLogin(name='login'), JanelaCadastro(name = 'cadastro'), JanelaPrincipal(name = 'principal')]
         
     def build(self):
         for s in self.screens:

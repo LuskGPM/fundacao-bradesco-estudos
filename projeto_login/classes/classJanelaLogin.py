@@ -6,9 +6,7 @@ from .classJanelaPrincipal import JanelaPrincipal
 class JanelaLogin(Screen):
     email = ObjectProperty(None)
     senha = ObjectProperty(None)
-    
-    def __init__(self):
-        self.exe = JanelaControle()
+    exe = JanelaControle()
         
     def btnLogin(self):
         if validarEntradas(email=self.email.text, senha=self.senha.text):

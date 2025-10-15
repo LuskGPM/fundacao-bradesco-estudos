@@ -8,9 +8,7 @@ class JanelaCadastro(Screen, Queries):
     nome = ObjectProperty(None)
     sobrenome = ObjectProperty(None)
     senha = ObjectProperty(None)
-    
-    def __init__(self):
-        self.exe = JanelaControle()
+    exe = JanelaControle()
     
     def reset(self):
         self.email.text=''

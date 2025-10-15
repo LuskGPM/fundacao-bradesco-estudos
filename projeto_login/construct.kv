@@ -1,4 +1,169 @@
-<JanelaCriarConta>:
+<JanelaCadastro>:
     name: 'cadastro'
     nome: nomeInput
     sobrenome: sobrenomeInput
+    email: emailInput
+    senha: senhaInput
+
+    FloatLayout:
+        cols: 1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text:'Nome: '
+                font_size: 33
+                pos_hint: {'x': 0, 'y': .8}
+                size_hint: .5,.12
+
+            TextInput:
+                id: nomeInput
+                pos_hint: {'x':.5 , 'y':.8 }
+                size_hint: .4,.12
+                multiline: False
+                font_size: 33
+            
+            Label:
+                text: 'Sobrenome: '
+                size_hint: .5,.12
+                pos_hint: {'x': 0, 'y':.8-0.13 }
+                font_size: 33
+
+            TextInput:
+                id: sobrenomeInput
+                pos_hint: {'x':.5 , 'y':.8-0.13 }
+                size_hint: .4,.12
+                multiline: False
+                font_size: 33
+
+            Label:
+                text: 'Email: '
+                size_hint: .5,.12
+                pos_hint: {'x': 0, 'y':.8-0.13*2 }
+                font_size: 33
+
+            TextInput:
+                id: emailInput
+                pos_hint: {'x':.5 , 'y':.8-0.13*2 }
+                size_hint: .4,.12
+                multiline: False
+                font_size: 33
+            
+            Label:
+                text: 'Senha: '
+                size_hint: .5,.12
+                pos_hint: {'x': 0, 'y':.8-0.13*3 }
+                font_size: 33
+
+            TextInput:
+                id: senhaInput
+                pos_hint: {'x':.5 , 'y':.8-0.13*3 }
+                size_hint: .4,.12
+                password: True
+                multiline: False
+                font_size: 33
+        
+        Button:
+            pos_hint: {'x':.3 , 'y':.2 }
+            size_hint: .4,.2
+            font_size: 33
+            text: 'Já possuí uma conta? Faça login'
+            on_release:
+                root.manager.transition.direction = 'left'
+                root.login()
+    
+    Button:
+        pos_hint: {'x': .3 , 'y':.05 }
+        size_hint: .5,.22
+        font_size: 33
+        text: 'Salvar'
+        on_release:
+            root.manager.transition.direction: 'left'
+            root.submit()
+
+<JanelaLogin>:
+    name:'login'
+    email: emailLogin
+    senha: senhaLogin
+
+    FloatLayout:
+        Label:
+            text:'Email: '
+            font_size: 33
+            pos_hint: {'x': .1, 'y': .7}
+            size_hint: .35,.055
+
+        TextInput:
+            id: emailLogin
+            font_size: 33
+            multiline: False
+            pos_hint: {'x': .45, 'y': .7}
+            size_hint: .35,.055
+        
+        Label:
+            text:'Senha: '
+            font_size: 33
+            pos_hint: {'x': .1, 'y': .6}
+            size_hint: .35,.055
+
+        TextInput:
+            id: senhaLogin
+            font_size: 33
+            multiline: False
+            password: True
+            pos_hint: {'x': .45, 'y': .6}
+            size_hint: .35,.055
+
+        Button:
+            pos_hint: {'x': .3, 'y':.35}
+            size_hint: .35,.09
+            font_size: 33
+            text: 'Login'
+            on_release:
+                root.manager.transition.direction = 'up'
+                root.btnLogin()
+        
+        Button:
+            pos_hint: {'x': .3, 'y':.2}
+            size_hint: .35,.08
+            font_size: 22
+            text: 'Não tem uma conta? Crie uma'
+            on_release:
+                root.manager.transition.direction = 'right'
+                root.btnCadastro()
+
+<JanelaPrincipal>:
+
+    name:'principal'
+    nomeCompleto: nomeCompleto
+    create: create
+    email: email
+
+    Label:
+        id: nomeCompleto
+        pos_hint: {'x': .1, 'y': .11}
+        size_hint: .8,.2
+        text:'Nome do Usuário: '
+
+    
+    Label:
+        id: email
+        pos_hint: {'x': .1, 'y': .11-0.3}
+        size_hint: .8,.2
+        text:'Email do Usuário: '
+
+    
+    Label:
+        id: create
+        pos_hint: {'x': .1, 'y': .11-0.3*2}
+        size_hint: .8,.2
+        text:'Criado em: '
+
+    Button:
+        text: 'Sair'
+        pos_hint: {'x': .2 , 'y': .1 }
+        size_hint: .6,.2
+        on_release:
+            app.root.current = 'login'
+            root.manager.transition.direction = 'down'
