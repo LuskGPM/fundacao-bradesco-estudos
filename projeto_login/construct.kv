@@ -173,9 +173,17 @@
 
         Button:
             text: 'Sair'
-            pos_hint: {'x': .2 , 'y': .2 }
-            size_hint: .6,.15
+            pos_hint: {'x': .2 , 'y': .22 }
+            size_hint: .6,.1
             on_release:
                 # app.root.current = 'login' (O app.root geralmente é o JanelaControle, é melhor usar root.manager)
                 root.manager.transition.direction = 'down' # CORREÇÃO: Usando '='
                 root.logout()
+
+        Button:
+            text: 'Deletar conta'
+            pos_hint: {'x': .25, 'y': .12}
+            size_hint: .5,.08
+            on_press: 
+                root.manager.transition.direction = 'down'
+                root.btnDelete()
