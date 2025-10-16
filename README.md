@@ -1,6 +1,6 @@
-# ATENÇÃO
-# Todas as informações abaixo serão referentes à pasta 📁/projeto_login
-# O mesmo README encontra-se na pasta 📁/projeto_login
+## ATENÇÃO
+- Todas as informações abaixo serão referentes à pasta 📁/projeto_login
+- O mesmo README encontra-se na pasta 📁/projeto_login
 
 
 
