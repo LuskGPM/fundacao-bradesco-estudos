@@ -1,14 +1,12 @@
 from imports import Screen, ObjectProperty
 from modules import validarEntradas, erroForm
 from .classDatabase import Queries
-from .classJanelaControle import JanelaControle
 
 class JanelaCadastro(Screen, Queries):
     email = ObjectProperty(None)
     nome = ObjectProperty(None)
     sobrenome = ObjectProperty(None)
     senha = ObjectProperty(None)
-    exe = JanelaControle()
     
     def reset(self):
         self.email.text=''
@@ -18,7 +16,7 @@ class JanelaCadastro(Screen, Queries):
     
     def login(self):
         self.reset()
-        self.exe.current = 'login'
+        self.manager.current = 'login'
         
     def submit(self):
         if validarEntradas(

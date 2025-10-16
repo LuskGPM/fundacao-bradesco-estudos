@@ -3,7 +3,7 @@ from kivy.uix.label import Label
 
 def erroForm():
     pop = Popup(title = 'Formulário Inválido', content = Label(
-        text='Preencha todos os campos'
+        text='Preencha todos os campos corretamente'
     ), size=(200, 200))
     
 def erroLogin():

@@ -1,17 +1,15 @@
 from imports import Screen, ObjectProperty
 from modules import validarEntradas, erroLogin
-from .classJanelaControle import JanelaControle
 from .classJanelaPrincipal import JanelaPrincipal
 
 class JanelaLogin(Screen):
     email = ObjectProperty(None)
     senha = ObjectProperty(None)
-    exe = JanelaControle()
         
     def btnLogin(self):
         if validarEntradas(email=self.email.text, senha=self.senha.text):
             JanelaPrincipal.identificador = self.email.text
-            self.exe.current = 'main'
+            self.manager.current = 'principal'
             self.reset()
             
         else:
@@ -19,7 +17,7 @@ class JanelaLogin(Screen):
             
     def btnCadastro(self):
         self.reset()
-        self.exe.current = 'cadastro'
+        self.manager.current = 'cadastro'
             
     def reset(self):
         self.email.text=''

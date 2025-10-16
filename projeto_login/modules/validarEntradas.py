@@ -14,7 +14,7 @@ def validarEntradas(
         return False
     
     elif len(senha) < 8 or senha.strip() == '':
-        print(f'Senha vazia ou menor de 8 dígitos: {senha}')
+        print(f'Senha vazia ou menor que 8 dígitos: {senha}')
         return False
     
     return True

@@ -1,21 +1,15 @@
-from imports import App, Builder
+from imports import Builder, App
 from .classJanelaControle import JanelaControle
-from .classJanelaLogin import JanelaLogin
+from .classJanelaLogin import JanelaLogin      
+from .classJanelaCadastro import JanelaCadastro  
 from .classJanelaPrincipal import JanelaPrincipal
-from .classJanelaCadastro import JanelaCadastro
-
-## Variáveis Globais
 
 class BuildApp(App):
-    exe = JanelaControle()
-    kv = Builder.load_file('construct.kv')
-    screens = [JanelaLogin(name='login'), JanelaCadastro(name = 'cadastro'), JanelaPrincipal(name = 'principal')]
-        
-    def build(self):
-        for s in self.screens:
-            self.exe.add_widget(s)
-        
-        self.kv
-        self.exe.current = 'login'
-        return self.exe
     
+    def build(self):
+        Builder.load_file('construct.kv')
+        screens = [JanelaLogin(name = 'login'), JanelaCadastro(name = 'cadastro'), JanelaPrincipal(name = 'principal')]
+        sm = JanelaControle()
+        for s in screens:
+            sm.add_widget(s)
+        return sm
