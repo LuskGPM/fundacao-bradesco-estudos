@@ -150,7 +150,7 @@ O projeto segue uma arquitetura bem estruturada com separação clara de respons
 
 ## 🔐 Validações Implementadas
 
-### Validação de Email
+### Validação de Email Básica
 ```python
 if '@' not in email:
     return False
@@ -165,6 +165,11 @@ if any(char.isdigit() for char in nome):
 ### Validação de Senha
 ```python
 if len(senha) < 8 or senha.strip() == '':
+    return False
+
+if str(senha_banco[0]) == str(senha):
+    return True
+else:
     return False
 ```
 
