@@ -75,7 +75,7 @@ projeto_login/
 
 ### Tabela: usuario
 ```sql
-CREATE TABLE usuario (
+CREATE TABLE if not exists usuario (
     email TEXT PRIMARY KEY,
     nome TEXT,
     sobrenome TEXT,
