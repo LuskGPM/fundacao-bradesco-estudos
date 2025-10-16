@@ -69,7 +69,7 @@ projeto_login/
 
 ### Tabela: usuario
 ```sql
-CREATE TABLE usuario (
+CREATE TABLE if not exists usuario (
     email TEXT PRIMARY KEY,
     nome TEXT,
     sobrenome TEXT,
@@ -90,7 +90,7 @@ pip install kivy
 python main.py
 ```
 
-#### Instale o Executável
+### Instale o Executável
 - Baixe o arquivo .zip na pasta /dist
 - Descompacte e execute
 O seu sistema operacional pode alertar como um arquivo desconhecido, clique em "Executar mesmo assim" ou semelhante.
@@ -256,3 +256,4 @@ Projeto desenvolvido para fins educacionais.
 ## 👨‍💻 Autor
 
 Projeto desenvolvido durante os estudos na Fundação Bradesco.
+
