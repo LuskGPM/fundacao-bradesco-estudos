@@ -1,0 +1,189 @@
+<JanelaCadastro>:
+    # Ligação das propriedades do Python com os IDs do KV (apenas referenciando)
+    nome: nomeInput
+    sobrenome: sobrenomeInput
+    email: emailInput
+    senha: senhaInput
+
+    FloatLayout:
+
+        FloatLayout:
+            # LINHA 1: NOME
+            Label:
+                text:'Nome: '
+                font_size: root.width / 30
+                pos_hint: {'x': 0, 'y': .8}
+                size_hint: .5,.07
+
+            TextInput:
+                id: nomeInput
+                pos_hint: {'x':.5 , 'y':.8 }
+                size_hint: .4,.07
+                multiline: False
+                font_size: root.width / 30
+
+            # LINHA 2: SOBRENOME
+            Label:
+                text: 'Sobrenome: '
+                size_hint: .5,.07
+                pos_hint: {'x': 0, 'y':.8-0.13 }
+                font_size: root.width / 30
+
+            TextInput:
+                id: sobrenomeInput
+                pos_hint: {'x':.5 , 'y':.8-0.13 }
+                size_hint: .4,.07
+                multiline: False
+                font_size: root.width / 30
+
+            # LINHA 3: EMAIL
+            Label:
+                text: 'Email: '
+                size_hint: .5,.07
+                pos_hint: {'x': 0, 'y':.8-0.13*2 }
+                font_size: root.width / 30
+
+            TextInput:
+                id: emailInput
+                pos_hint: {'x':.5 , 'y':.8-0.13*2 }
+                size_hint: .4,.07
+                multiline: False
+                font_size: root.width / 30
+
+            # LINHA 4: SENHA
+            Label:
+                text: 'Senha: '
+                size_hint: .5,.07
+                pos_hint: {'x': 0, 'y':.8-0.13*3 }
+                font_size: root.width / 30
+
+            TextInput:
+                id: senhaInput
+                pos_hint: {'x':.5 , 'y':.8-0.13*3 }
+                size_hint: .4,.07
+                password: True
+                multiline: False
+                font_size: root.width / 30
+
+        # BOTÃO 1: JÁ POSSUI CONTA
+        Button:
+            pos_hint: {'x':.3 , 'y':.2 }
+            size_hint: .35,.06
+            font_size: root.width / 50
+            text: 'Já possuí uma conta? Faça login'
+            on_release:
+                root.manager.transition.direction = 'left' # CORREÇÃO: Usando '='
+                root.login() # Chame o método da classe JanelaCadastro
+        
+        # BOTÃO 2: SALVAR
+        Button:
+            pos_hint: {'x': .3 , 'y':.05 }
+            size_hint: .35,.08
+            font_size: root.width / 30
+            text: 'Salvar'
+            on_release:
+                root.manager.transition.direction = 'left' # CORREÇÃO: Usando '='
+                root.submit() # Chame o método da classe JanelaCadastro
+
+# ==============================================================================
+# 3. REGRA DE CLASSE: Janela Login
+#    - Aqui, definimos o CONTEÚDO e as PROPRIEDADES da JanelaLogin.
+# ==============================================================================
+<JanelaLogin>:
+    email: emailLogin
+    senha: senhaLogin
+
+    FloatLayout:
+        # CAMPOS DE LOGIN
+        Label:
+            text:'Email: '
+            font_size: root.width / 30
+            pos_hint: {'x': .1, 'y': .7}
+            size_hint: .35,.06
+
+        TextInput:
+            id: emailLogin
+            font_size: root.width / 40
+            multiline: False
+            pos_hint: {'x': .45, 'y': .7}
+            size_hint: .35,.06
+        
+        Label:
+            text:'Senha: '
+            font_size: root.width / 30
+            pos_hint: {'x': .1, 'y': .6}
+            size_hint: .35,.06
+
+        TextInput:
+            id: senhaLogin
+            font_size: root.width / 40
+            multiline: False
+            password: True
+            pos_hint: {'x': .45, 'y': .6}
+            size_hint: .35,.06
+
+        # BOTÃO 1: LOGIN
+        Button:
+            pos_hint: {'x': .3, 'y':.35}
+            size_hint: .35,.07
+            font_size: root.width / 30
+            text: 'Login'
+            on_release:
+                root.manager.transition.direction = 'up' # CORREÇÃO: Usando '='
+                root.btnLogin()
+
+        # BOTÃO 2: CRIE UMA CONTA
+        Button:
+            pos_hint: {'x': .3, 'y':.2}
+            size_hint: .35,.08
+            font_size: root.width / 50
+            text: 'Não tem uma conta? Crie uma'
+            on_release:
+                root.manager.transition.direction = 'right' # CORREÇÃO: Usando '='
+                root.btnCadastro() # Este método troca para 'cadastro' usando self.manager.current
+
+# ==============================================================================
+# 4. REGRA DE CLASSE: Janela Principal
+#    - Aqui, definimos o CONTEÚDO e as PROPRIEDADES da JanelaPrincipal.
+# ==============================================================================
+<JanelaPrincipal>:
+    n: n
+    create: create
+    email_label: email
+
+    FloatLayout:
+
+        Label:
+            id: n
+            pos_hint: {'x': .1, 'y': .7}
+            size_hint: .8,.1
+            text:'Nome do Usuário: '
+
+        Label:
+            id: email
+            pos_hint: {'x': .1, 'y': .6}
+            size_hint: .8,.1
+            text:'Email do Usuário: '
+
+        Label:
+            id: create
+            pos_hint: {'x': .1, 'y': .5}
+            size_hint: .8,.1
+            text:'Criado em: '
+
+        Button:
+            text: 'Sair'
+            pos_hint: {'x': .2 , 'y': .22 }
+            size_hint: .6,.1
+            on_release:
+                # app.root.current = 'login' (O app.root geralmente é o JanelaControle, é melhor usar root.manager)
+                root.manager.transition.direction = 'down' # CORREÇÃO: Usando '='
+                root.logout()
+
+        Button:
+            text: 'Deletar conta'
+            pos_hint: {'x': .25, 'y': .12}
+            size_hint: .5,.08
+            on_press: 
+                root.manager.transition.direction = 'down'
+                root.btnDelete()
