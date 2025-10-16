@@ -90,6 +90,11 @@ pip install kivy
 python main.py
 ```
 
+#### Instale o Executável
+- Baixe o arquivo .zip na pasta /dist
+- Descompacte e execute
+O seu sistema operacional pode alertar como um arquivo desconhecido, clique em "Executar mesmo assim" ou semelhante.
+
 ## 📱 Telas do Sistema
 
 ### 1. Tela de Login
