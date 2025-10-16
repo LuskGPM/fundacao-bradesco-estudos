@@ -2,9 +2,9 @@ from imports import ObjectProperty, Screen
 from .classDatabase import Queries
 
 class JanelaPrincipal(Screen, Queries):
-    nomeCompleto = ObjectProperty(None)
+    n = ObjectProperty(None)
     create = ObjectProperty(None)
-    email = ObjectProperty(None)
+    email_label = ObjectProperty(None)
     identificador = ''
     
     def on_pre_enter(self, *args):
@@ -15,8 +15,8 @@ class JanelaPrincipal(Screen, Queries):
         
     def entrar(self):
         dados = self._busca(email=self.identificador)
-        self.nomeCompleto.text=f'Usuário {dados[0]} {dados[1]}'
-        self.email.text=f'Email: {self.identificador}'
-        self.create.text=f'Criado em: {dados[-1]}'
+        self.n.text = f'Nome completo: {dados[0]} {dados[1]}'
+        self.email_label.text = 'Email: ',self.identificador
+        self.create.text = 'Criado em: ',str(dados[-1])
 
             

@@ -13,6 +13,7 @@ class JanelaCadastro(Screen, Queries):
         self.nome.text=''
         self.sobrenome.text=''
         self.senha.text=''
+        self.manager.current = 'login'
     
     def login(self):
         self.reset()

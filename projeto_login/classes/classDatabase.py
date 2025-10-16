@@ -47,30 +47,40 @@ class Queries(Banco):
         
     def iniciarBanco(self):
         self._conectar()
-        self._execute('create table if not exists usuario (email text primary key, nome text, sobrenome text, senha text, create date)')
+        self._execute('create table if not exists usuario (email text primary key, nome text, sobrenome text, senha text, [create] date)')
         self._comitar()
         self._disconectar()
         
     def _insert(self, email:str, nome:str, sobrenome:str, senha:str):
         self._conectar()
-        self._execute('insert into usuario (email ,nome, sobrenome, senha, create) values (?, ?, ?, ?)', (
+        date = self._getDate()
+        self._execute('insert into usuario (email ,nome, sobrenome, senha, [create]) values (?, ?, ?, ?, ?)', (
             email.strip(), 
             nome.strip(), 
             sobrenome.strip(), 
-            senha.strip(), 
-            self._getDate()
+            senha.strip(),
+            date
             ))
         self._comitar()
         self._disconectar()
         
     def _busca(self, email:str = '', nome:str = '', sobrenome:str = ''):
         self._conectar()
-        self._execute('select nome, sobrenome, create from usuario where nome like ? or sobrenome like ? or email = ?', (
+        self._execute('select nome, sobrenome, [create] from usuario where nome like ? or sobrenome like ? or email = ?', (
             nome.strip().lower(),
             sobrenome.strip().lower(),
             email.strip().lower(),
             ))
-        return self._fetchAll()
+        dados = self._fetchAll()
+        self._disconectar()
+        
+        lista = list()
+        for l in dados:
+            for i in l:
+                lista.append(i)
+                
+        print(lista)
+        return lista
         
     def _delete(self, email:str):
         self._conectar()

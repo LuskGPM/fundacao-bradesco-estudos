@@ -80,7 +80,6 @@ class JanelaPrincipal(Screen, Queries):
         dados = self._search(email=self.atual)
         nome = dados[1]
         sobrenome = dados[2]
-        email = self.atual
         
         self.n.text=f'Nome da Conta: {nome} {sobrenome}'
         self.email.text=f'Email: {self.atual}'

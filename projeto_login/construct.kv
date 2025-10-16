@@ -1,26 +1,3 @@
-# ==============================================================================
-# 1. GERENCIADOR DE TELAS (ROOT WIDGET)
-#    - Define o JanelaControle (que herda de ScreenManager)
-#    - Aqui, APENAS INSTANCIAMOS (sem < >) as telas que ele irá gerenciar.
-# ==============================================================================
-<JanelaControle>:
-    # INSTÂNCIA da Janela de Cadastro (O conteúdo é definido na regra abaixo)
-    JanelaCadastro:
-        name: 'cadastro'
-
-    # INSTÂNCIA da Janela de Login (O conteúdo é definido na regra abaixo)
-    JanelaLogin:
-        name: 'login'
-
-    # INSTÂNCIA da Janela Principal (O conteúdo é definido na regra abaixo)
-    JanelaPrincipal:
-        name: 'principal'
-
-
-# ==============================================================================
-# 2. REGRA DE CLASSE: Janela Cadastro
-#    - Aqui, definimos o CONTEÚDO e as PROPRIEDADES da JanelaCadastro.
-# ==============================================================================
 <JanelaCadastro>:
     # Ligação das propriedades do Python com os IDs do KV (apenas referenciando)
     nome: nomeInput
@@ -29,8 +6,6 @@
     senha: senhaInput
 
     FloatLayout:
-        # A propriedade cols: 1 só faz sentido em BoxLayout ou GridLayout.
-        # Foi removida do FloatLayout (e o FloatLayout pai, desnecessário, também foi removido)
 
         FloatLayout:
             # LINHA 1: NOME
@@ -93,7 +68,7 @@
         # BOTÃO 1: JÁ POSSUI CONTA
         Button:
             pos_hint: {'x':.3 , 'y':.2 }
-            size_hint: .4,.2
+            size_hint: .35,.06
             font_size: root.width / 50
             text: 'Já possuí uma conta? Faça login'
             on_release:
@@ -103,7 +78,7 @@
         # BOTÃO 2: SALVAR
         Button:
             pos_hint: {'x': .3 , 'y':.05 }
-            size_hint: .5,.22
+            size_hint: .35,.08
             font_size: root.width / 30
             text: 'Salvar'
             on_release:
@@ -124,33 +99,33 @@
             text:'Email: '
             font_size: root.width / 30
             pos_hint: {'x': .1, 'y': .7}
-            size_hint: .35,.055
+            size_hint: .35,.06
 
         TextInput:
             id: emailLogin
-            font_size: root.width / 30
+            font_size: root.width / 40
             multiline: False
             pos_hint: {'x': .45, 'y': .7}
-            size_hint: .35,.055
+            size_hint: .35,.06
         
         Label:
             text:'Senha: '
             font_size: root.width / 30
             pos_hint: {'x': .1, 'y': .6}
-            size_hint: .35,.055
+            size_hint: .35,.06
 
         TextInput:
             id: senhaLogin
-            font_size: root.width / 30
+            font_size: root.width / 40
             multiline: False
             password: True
             pos_hint: {'x': .45, 'y': .6}
-            size_hint: .35,.055
+            size_hint: .35,.06
 
         # BOTÃO 1: LOGIN
         Button:
             pos_hint: {'x': .3, 'y':.35}
-            size_hint: .35,.09
+            size_hint: .35,.07
             font_size: root.width / 30
             text: 'Login'
             on_release:
@@ -172,33 +147,35 @@
 #    - Aqui, definimos o CONTEÚDO e as PROPRIEDADES da JanelaPrincipal.
 # ==============================================================================
 <JanelaPrincipal>:
-    nomeCompleto: nomeCompleto
+    n: n
     create: create
-    email: email
+    email_label: email
 
-    Label:
-        id: nomeCompleto
-        pos_hint: {'x': .1, 'y': .11}
-        size_hint: .8,.2
-        text:'Nome do Usuário: '
+    FloatLayout:
 
-    Label:
-        id: email
-        pos_hint: {'x': .1, 'y': .11-0.3}
-        size_hint: .8,.2
-        text:'Email do Usuário: '
+        Label:
+            id: n
+            pos_hint: {'x': .1, 'y': .7}
+            size_hint: .8,.1
+            text:'Nome do Usuário: '
 
-    Label:
-        id: create
-        pos_hint: {'x': .1, 'y': .11-0.3*2}
-        size_hint: .8,.2
-        text:'Criado em: '
+        Label:
+            id: email
+            pos_hint: {'x': .1, 'y': .6}
+            size_hint: .8,.1
+            text:'Email do Usuário: '
 
-    Button:
-        text: 'Sair'
-        pos_hint: {'x': .2 , 'y': .1 }
-        size_hint: .6,.2
-        on_release:
-            # app.root.current = 'login' (O app.root geralmente é o JanelaControle, é melhor usar root.manager)
-            root.manager.transition.direction = 'down' # CORREÇÃO: Usando '='
-            root.logout()
+        Label:
+            id: create
+            pos_hint: {'x': .1, 'y': .5}
+            size_hint: .8,.1
+            text:'Criado em: '
+
+        Button:
+            text: 'Sair'
+            pos_hint: {'x': .2 , 'y': .2 }
+            size_hint: .6,.15
+            on_release:
+                # app.root.current = 'login' (O app.root geralmente é o JanelaControle, é melhor usar root.manager)
+                root.manager.transition.direction = 'down' # CORREÇÃO: Usando '='
+                root.logout()
