@@ -1,5 +1,6 @@
 from imports import ObjectProperty, Screen
 from .classDatabase import Queries
+from modules import erroLogin
 
 class JanelaPrincipal(Screen, Queries):
     n = ObjectProperty(None)
@@ -13,10 +14,18 @@ class JanelaPrincipal(Screen, Queries):
     def logout(self):
         self.manager.current = 'login'
         
+    def btnDelete(self):
+        self._delete(email=self.identificador)
+        self.manager.current = 'login'
+        
     def entrar(self):
         dados = self._busca(email=self.identificador)
-        self.n.text = f'Nome completo: {dados[0]} {dados[1]}'
-        self.email_label.text = 'Email: ',self.identificador
-        self.create.text = 'Criado em: ',str(dados[-1])
+        
+        if len(dados) == 0:
+            self.logout()
+        else:
+            self.n.text = f'Nome completo: {dados[0]} {dados[1]}'
+            self.email_label.text = f'Email: {self.identificador}'
+            self.create.text = f'Criado em: {dados[-1]}'
 
             

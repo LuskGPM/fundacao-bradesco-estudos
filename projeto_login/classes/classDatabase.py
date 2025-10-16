@@ -34,6 +34,9 @@ class Banco():
     def _fetchAll(self):
         return self.__cursor.fetchall()
     
+    def _fetchOne(self):
+        return self.__cursor.fetchone()
+    
     def _comitar(self):
         try:
             self.__conexao.commit()
@@ -54,14 +57,17 @@ class Queries(Banco):
     def _insert(self, email:str, nome:str, sobrenome:str, senha:str):
         self._conectar()
         date = self._getDate()
-        self._execute('insert into usuario (email ,nome, sobrenome, senha, [create]) values (?, ?, ?, ?, ?)', (
-            email.strip(), 
-            nome.strip(), 
-            sobrenome.strip(), 
-            senha.strip(),
-            date
-            ))
-        self._comitar()
+        try:
+            self._execute('insert into usuario (email ,nome, sobrenome, senha, [create]) values (?, ?, ?, ?, ?)', (
+                email.strip(), 
+                nome.strip(), 
+                sobrenome.strip(), 
+                senha.strip(),
+                date
+                ))
+            self._comitar()
+        except sql.IntegrityError as e:
+            print('Email já cadastrado ', e)
         self._disconectar()
         
     def _busca(self, email:str = '', nome:str = '', sobrenome:str = ''):
@@ -93,6 +99,16 @@ class Queries(Banco):
             self._execute('update usuario set nome = ?, sobrenome = ?, senha = ? where email = ?', (nome, sobrenome, senha, email))
             self._comitar()
             self._disconectar()
+    
+    def _validarSenha(self, senha:str, email:str):
+        self._conectar()
+        self._execute('select senha from usuario where email = ?', (email,))
+        senha_banco = self._fetchOne()
+        self._disconectar()
+        if str(senha_banco[0]) == str(senha):
+            return True
+        else:
+            return False
     
     @staticmethod
     def _getDate():

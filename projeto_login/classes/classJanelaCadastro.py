@@ -24,8 +24,11 @@ class JanelaCadastro(Screen, Queries):
             email=self.email.text,
             nome=self.nome.text,
             sobrenome=self.sobrenome.text,
-            senha=self.senha.text
+            senha=self.senha.text,
+            login=False
         ):
+            print(f'tamanho da senha para inserir: {len(self.senha.text)}')
+            print(f'Senha: {self.senha.text}')
             self._insert(
                 email=self.email.text,
                 nome=self.nome.text,

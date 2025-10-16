@@ -2,7 +2,8 @@ def validarEntradas(
     email:str = '',
     nome:str = '',
     sobrenome:str = '',
-    senha:str = ''
+    senha:str = '',
+    login:bool = False
     ) -> bool:
     
     if '@' not in email:
@@ -16,5 +17,11 @@ def validarEntradas(
     elif len(senha) < 8 or senha.strip() == '':
         print(f'Senha vazia ou menor que 8 dígitos: {senha}')
         return False
+    
+    if login == False:
+        if len(nome) < 2 or len(sobrenome) < 2:
+            print('Nome ou Sobrenome muito curtos')
+            return False
+
     
     return True
